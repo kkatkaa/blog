@@ -1,11 +1,17 @@
 class CommentsController < ApplicationController
   before_action :find_article
-  
+
   def create
     @comment = Comment.new(comment_params)
     @comment.article = @article
     @comment.save
 
+    redirect_to article_path(@article)
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
     redirect_to article_path(@article)
   end
 
