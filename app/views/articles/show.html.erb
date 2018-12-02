@@ -8,6 +8,22 @@
 <%= @article.text %>
 </p>
 
+<h2> Comments </h2>
+
+<% @article.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Body:</strong>
+    <%= comment.body %>
+  </p>
+  <hr />
+  <% end %>
+
+
 <%= form_for @article.comments.new do |f| %>
 <%= f.hidden_field :article_id %>
 
