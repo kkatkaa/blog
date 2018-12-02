@@ -1,6 +1,6 @@
-<%= render 'errors' %>
+<%= render 'common/errors', model: @article %>
 
-<%= form_for :article, url: articles_path do |f| %>
+<%= form_for @article do |f| %>
 <p>
   <%= f.label :title %>
   <%= f.text_field :title %>
