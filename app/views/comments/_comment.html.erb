@@ -7,5 +7,6 @@
   <strong>Body:</strong>
   <%= comment.body %>
 </p>
-<%= link_to 'Destroy', article_comment_path(article_id: comment.article.id, id: comment.id), method: :delete %>
+<%= link_to 'Destroy', article_comment_path(article_id: comment.article.id, id: comment.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+
 <hr />
