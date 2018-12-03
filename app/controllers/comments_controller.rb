@@ -11,12 +11,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to article_path(@article)
+  def show
+    @comment = Comment.new
   end
-
+  
   def edit
     @comment = Comment.find(params[:id])
   end
@@ -28,6 +26,12 @@ class CommentsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to article_path(@article)
   end
 
   private
