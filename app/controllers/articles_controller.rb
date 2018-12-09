@@ -5,8 +5,14 @@ class ArticlesController < ApplicationController
     @articles = Article.all.order(id: :desc)
   end
 
+  def show
+    @comment = Comment.new
+  end
   def new
     @article = Article.new
+  end
+
+  def edit
   end
 
   def create
@@ -17,13 +23,6 @@ class ArticlesController < ApplicationController
    else
     render 'new'
    end
-  end
-
-  def show
-    @comment = Comment.new
-  end
-
-  def edit
   end
 
   def update
