@@ -1,6 +1,14 @@
 class CommentsController < ApplicationController
   before_action :find_article
 
+  def show
+    @comment = Comment.new
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+  end
+
   def create
     @comment = Comment.new(comment_params)
     @comment.article = @article
@@ -9,14 +17,6 @@ class CommentsController < ApplicationController
     else
       render 'articles/show'
     end
-  end
-
-  def show
-    @comment = Comment.new
-  end
-  
-  def edit
-    @comment = Comment.find(params[:id])
   end
 
   def update
