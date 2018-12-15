@@ -11,15 +11,15 @@
 
   <body>
     <% if notice %>
-    <div class="alert alert-success">
-      <%= notice %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
     <% end %>
-    </div>
 
     <% if alert %>
-    <div class="alert alert-danger">
-      <%= alert %>
-    </div>
+      <div class="alert alert-danger">
+        <%= alert %>
+      </div>
     <% end %>
 
     <% if user_signed_in? %>
