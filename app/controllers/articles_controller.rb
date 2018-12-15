@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new(commenter: session[:commenter])
   end
   def new
     @article = Article.new
