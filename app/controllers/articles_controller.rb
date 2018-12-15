@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.order(id: :desc)
+    @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end
 
   def show
@@ -48,4 +49,6 @@ class ArticlesController < ApplicationController
   def find_article
     @article = Article.find(params[:id])
   end
+
+
 end
