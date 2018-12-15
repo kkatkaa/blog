@@ -7,6 +7,12 @@
   <strong> Text:</strong>
 <%= @article.text %>
 </p>
+<p>
+  <strong> Tags:</strong>
+  <% @article.tags.each do |t| %>
+    <%=link_to t, articles_path(q: t), class: "badge badge-dark"%>
+  <% end %>
+</p>
 
 <h2> Comments </h2>
 
