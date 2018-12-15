@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :find_article
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new(commenter: session[:commenter])
   end
 
   def edit
@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.article = @article
     if @comment.save
+      session[:commenter] = @comment.commenter
       redirect_to article_path(@article)
     else
       render 'articles/show'
