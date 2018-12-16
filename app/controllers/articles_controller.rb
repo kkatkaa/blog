@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless current_user == @article.user
+    if current_user != @article.user && !current_user.admin?
       flash[:alert] = "You are not allowed to be here"
      redirect_to articles_path
    end
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user if current_user
    if @article.save
      flash[:notice] = "You've successfuly add this article"
-      sredirect_to article_path(@article)
+      redirect_to article_path(@article)
    else
     render 'new'
    end
