@@ -16,6 +16,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    unless current_user == @article.user
+      flash[:alert] = "You are not allowed to be here"
+     redirect_to articles_path
+   end
   end
 
   def create
@@ -23,7 +27,8 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user = current_user if current_user
    if @article.save
-    redirect_to article_path(@article)
+     flash[:notice] = "You've successfuly add this article"
+      sredirect_to article_path(@article)
    else
     render 'new'
    end
@@ -32,6 +37,7 @@ class ArticlesController < ApplicationController
   def update
     # article_params = params.require(:article).permit(:title, :text)
     if @article.update(article_params)
+      flash[:notice] = "You've successfuly update this article"
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -40,6 +46,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
+    flash[:notice] = "You've delete your article"
     redirect_to articles_path
   end
 

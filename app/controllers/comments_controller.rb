@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     @comment.article = @article
     if @comment.save
       session[:commenter] = @comment.commenter
+      flash[:notice] = "You've successfuly add this comment"
       redirect_to article_path(@article)
     else
       render 'articles/show'
@@ -23,6 +24,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
+      flash[:notice] = "You've successfuly update this comment"
       redirect_to article_path(@article)
     else
       render 'edit'
@@ -32,6 +34,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
+    flash[:notice] = "You've delete your comment"
     redirect_to article_path(@article)
   end
 
