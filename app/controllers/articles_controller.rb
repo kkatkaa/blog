@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, exept: [:show, :index]
+  before_action :authorize_article, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all.order(id: :desc)
@@ -16,7 +18,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    return unless authorize_article
   end
 
   def create
@@ -33,8 +34,6 @@ class ArticlesController < ApplicationController
 
   def update
     # article_params = params.require(:article).permit(:title, :text)
-    return unless authorize_article
-
     if @article.update(article_params)
       flash[:notice] = "You've successfuly update this article"
       redirect_to article_path(@article)
@@ -44,8 +43,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    return unless authorize_article
-
     @article.destroy
     flash[:notice] = "You've delete your article"
     redirect_to articles_path
