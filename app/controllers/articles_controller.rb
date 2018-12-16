@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    if current_user != @article.user && !current_user.admin?
+    if current_user != @article.user && !current_user&.admin?
       flash[:alert] = "You are not allowed to be here"
      return redirect_to articles_path
    end
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
 
   def update
     # article_params = params.require(:article).permit(:title, :text)
-    if current_user != @article.user && !current_user.admin?
+    if current_user != @article.user && !current_user&.admin?
       flash[:alert] = "You are not allowed to be here"
       return redirect_to article_path(@article)
     end
@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if current_user != @article.user && !current_user.admin?
+    if current_user != @article.user && !current_user&.admin?
       flash[:alert] = "You are not allowed to delete"
       return redirect_to articles_path
     end
