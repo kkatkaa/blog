@@ -24,5 +24,6 @@
 <%=render 'comments/form' %>
 
 <%= link_to 'Back', articles_path %>
-<% @article.user == current_user || current_user.admin? %> 
-<%= link_to 'Edit', edit_article_path(@article) %>
+<% if @article.user == current_user || current_user.admin? %>
+  <%= link_to 'Edit', edit_article_path(@article) %>
+<% end %>
