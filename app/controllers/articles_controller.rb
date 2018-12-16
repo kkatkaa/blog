@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, exept: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :authorize_article, only: [:edit, :update, :destroy]
 
   def index
@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @comment = Comment.new(commenter: session[:commenter])
+    @comment = Comment.new
   end
 
   def new

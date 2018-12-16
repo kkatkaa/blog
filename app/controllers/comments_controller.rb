@@ -12,8 +12,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.article = @article
+    @comment.user = current_user
     if @comment.save
-      session[:commenter] = @comment.commenter
+      # session[:commenter] = @comment.commenter
       flash[:notice] = "You've successfuly add this comment"
       redirect_to article_path(@article)
     else
@@ -45,6 +46,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-     params.require(:comment).permit(:commenter, :body)
+     params.require(:comment).permit(:user, :body)
   end
 end
