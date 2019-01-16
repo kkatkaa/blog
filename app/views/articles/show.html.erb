@@ -18,14 +18,35 @@
   <% end %>
 </p>
 
-<h2> Comments </h2>
-  <%= render @article.comments %>
-  <% if current_user %>
-    <%=render 'comments/form' %>
-  <%end%>
+  <h2> Comments </h2>
+    <div class="pad-bottom">
+      <a id="show-comments-button" class="button default ok" href="#users-comments" data-toggle="collapse" aria-expanded="false">
+        Show/hide comments
+      </a>
+      <div id="users-comments" class="collapse">
+        <div class="row pad-top">
+          <div class="col-xs-6 col-sm-6 field-row">
+            <%= render @article.comments %>
+          </div>
+        </div>
+      </div>
 
-  <%= link_to 'Back', articles_path %>
-  
-  <% if @article.user == current_user || current_user&.admin? %>
-    <%= link_to 'Edit', edit_article_path(@article) %>
-  <% end %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#show-comments-button').click(function(){
+          $('#users-comments').toggle();
+        });
+      });
+    </script>
+
+    <div>
+      <% if current_user %>
+        <%=render 'comments/form' %>
+      <%end%>
+    </div>
+    <div>
+      <%= link_to 'Back', articles_path %>
+      <% if @article.user == current_user || current_user&.admin? %>
+        <%= link_to 'Edit', edit_article_path(@article) %>
+      <% end %>
+    </div>
