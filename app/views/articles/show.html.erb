@@ -12,17 +12,17 @@
 <%= @article.text %>
 </p>
 <p>
-  <strong> Tags:</strong>
+  <strong>Tags:</strong>
   <% @article.tags.each do |t| %>
     <%=link_to t, articles_path(q: t), class: "badge badge-dark"%>
   <% end %>
 </p>
 
-  <h2> Comments </h2>
+  <h2>Comments</h2>
     <div class="pad-bottom">
-      <a id="show-comments-button" class="button default ok" href="#users-comments" data-toggle="collapse" aria-expanded="false">
-        Show/hide comments
-      </a>
+      <button id="show-comments-button" value='Show' class="button default ok" href="#users-comments" data-toggle="collapse" aria-expanded="false">
+        Show
+      </button>
       <div id="users-comments" class="collapse">
         <div class="row pad-top">
           <div class="col-xs-6 col-sm-6 field-row">
@@ -34,7 +34,8 @@
     <script type="text/javascript">
       $(document).ready(function(){
         $('#show-comments-button').click(function(){
-          $('#users-comments').toggle();
+        $('#show-comments-button').text('Hide');
+        $('#users-comments').toggle();
         });
       });
     </script>
