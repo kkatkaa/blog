@@ -1,26 +1,26 @@
 <h1> My Article </h1>
-<p>
-  <strong>Title:</strong>
-<%= @article.title %>
-</p>
-<p>
-  <strong>User:</strong>
-<%= @article.user.email %>
-</p>
-<p>
-  <strong> Text:</strong>
-<%= @article.text %>
-</p>
-<p>
-  <strong>Tags:</strong>
-  <% @article.tags.each do |t| %>
-    <%=link_to t, articles_path(q: t), class: "badge badge-dark"%>
-  <% end %>
-</p>
+  <p>
+    <strong>Title:</strong>
+  <%= @article.title %>
+  </p>
+  <p>
+    <strong>User:</strong>
+  <%= @article.user.email %>
+  </p>
+  <p>
+    <strong> Text:</strong>
+  <%= @article.text %>
+  </p>
+  <p>
+    <strong>Tags:</strong>
+    <% @article.tags.each do |t| %>
+      <%=link_to t, articles_path(q: t), class: "badge badge-dark"%>
+    <% end %>
+  </p>
 
   <h2>Comments</h2>
     <div class="pad-bottom">
-      <button id="show-comments-button" value='Show' class="button default ok" href="#users-comments" data-toggle="collapse" aria-expanded="false">
+      <button id="show-comments-button" value='Show' class= "hidden" href="#users-comments" data-toggle="collapse" aria-expanded="false">
         Show
       </button>
       <div id="users-comments" class="collapse">
@@ -30,24 +30,14 @@
           </div>
         </div>
       </div>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('#show-comments-button').click(function(){
-        $('#show-comments-button').text('Hide');
-        $('#users-comments').toggle();
-        });
-      });
-    </script>
-
-    <div>
-      <% if current_user %>
-        <%=render 'comments/form' %>
-      <%end%>
-    </div>
-    <div>
-      <%= link_to 'Back', articles_path %>
-      <% if @article.user == current_user || current_user&.admin? %>
-        <%= link_to 'Edit', edit_article_path(@article) %>
-      <% end %>
-    </div>
+      <div>
+        <% if current_user %>
+          <%=render 'comments/form' %>
+        <%end%>
+      </div>
+      <div>
+        <%= link_to 'Back', articles_path %>
+          <% if @article.user == current_user || current_user&.admin? %>
+            <%= link_to 'Edit', edit_article_path(@article) %>
+          <% end %>
+      </div>

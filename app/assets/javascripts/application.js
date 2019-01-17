@@ -17,3 +17,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+$(document).ready(function(){
+  $('#show-comments-button').click(function(){
+  $('#show-comments-button').text('Hide');
+  $('#users-comments').toggle();
+  });
+});
