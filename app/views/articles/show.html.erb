@@ -24,7 +24,7 @@
     <% end %>
   </p>
 
-    <%= pluralize(@article.likes.count, 'person') %> liked this article
+    <%= pluralize(@article.likes_count, 'person') %> liked this article
 
     <% if @like.persisted? %>
       <i class="fa fa-thumbs-down"></i>
@@ -45,7 +45,7 @@
       <div id="users-comments" class="collapse">
         <div class="row pad-top">
           <div class="col-xs-6 col-sm-6 field-row">
-            <%= render @article.comments %>
+            <%= render @article.comments.includes(:user) %>
           </div>
         </div>
       </div>

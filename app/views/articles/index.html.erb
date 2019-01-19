@@ -37,7 +37,7 @@
       <% if article.user == current_user || current_user&.admin? %>
         <td><%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: 'Are you sure?'} %> </td>
       <%end %>
-      <td><%= article.comments.count %></td>
+      <td><%= article.comments_count %></td>
     </tr>
   <% end %>
   </tbody>

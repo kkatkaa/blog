@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :authorize_article, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.all.order(id: :desc)
+    @articles = Article.all.includes(:user).order(id: :desc)
     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end
 
@@ -25,8 +25,8 @@ class ArticlesController < ApplicationController
         title: @article.title,
         text: @article.text,
         views_count: @article.views_count,
-        likes_count: @article.likes.count,
-        comments_count: @article.comments.count
+        likes_count: @article.likes_count,
+        comments_count: @article.comments_count
       }
       end
     end

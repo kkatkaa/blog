@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   validates :title, presence: true, length: {minimum: 5}
 
   has_many :comments, dependent: :destroy
-  has_many :likes
+  has_many :likes 
   has_many :users, through: :likes
   belongs_to :user
 
@@ -14,7 +14,7 @@ class Article < ApplicationRecord
 
   def css_class
     'normal'
-  end   
+  end
 
   private
 
