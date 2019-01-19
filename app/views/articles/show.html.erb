@@ -18,6 +18,16 @@
     <% end %>
   </p>
 
+    <%= pluralize(@article.likes.count, 'person') %> liked this article
+
+    <% if @like.persisted? %>
+      <i class="fa fa-thumbs-down"></i>
+      <%= link_to 'Unlike', article_like_path(@article, @like), method: :delete %>
+    <% else %>
+      <i class="fa fa-thumbs-up"></i>
+      <%= link_to 'Like', article_likes_path(@article), method: :post %>
+    <% end %>
+
   <h2>Comments</h2>
     <div class="pad-bottom">
       <button id="show-comments-button" value='Show' class= "hidden" href="#users-comments" data-toggle="collapse" aria-expanded="false">
