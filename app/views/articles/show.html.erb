@@ -12,6 +12,12 @@
   <%= @article.text %>
   </p>
   <p>
+    <% if sponsored_article? @article %>
+      <h3> Artykuł sponsorowany przez firmę <%= @article.company.name %></h3>
+    <% end %>
+  </p>
+
+  <p>
     <strong>Tags:</strong>
     <% @article.tags.each do |t| %>
       <%=link_to t, articles_path(q: t), class: "badge badge-dark"%>
@@ -28,6 +34,9 @@
       <%= link_to 'Like', article_likes_path(@article), method: :post %>
     <% end %>
 
+    <% if  sponsored_article? @article %>
+      <p> Komentarze zablokowane</p>
+    <% else %>
   <h2>Comments</h2>
     <div class="pad-bottom">
       <button id="show-comments-button" value='Show' class= "hidden" href="#users-comments" data-toggle="collapse" aria-expanded="false">
@@ -45,6 +54,8 @@
           <%=render 'comments/form' %>
         <%end%>
       </div>
+      <% end %>
+
       <div>
         <%= link_to 'Back', articles_path %>
           <% if @article.user == current_user || current_user&.admin? %>

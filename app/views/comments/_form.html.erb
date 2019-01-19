@@ -1,6 +1,6 @@
 <%= render 'common/errors', model: @comment %>
 
-<%= form_for [@article, @comment] do |f| %>
+<%= form_for [@article, @comment], url: article_comments_path(@article, @comment) do |f| %>
 
   </div>
   <div class="form-group">
