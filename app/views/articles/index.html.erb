@@ -1,4 +1,7 @@
 <h1> My Articles </h1>
+  <h4>Most popular article: <%= link_to @most_popular.title, article_path(@most_popular) %></h4>
+
+
   <%= link_to 'New article', new_article_path %>
 
   <%= form_tag articles_path, method: :get do %>

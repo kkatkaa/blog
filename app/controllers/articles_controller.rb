@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.published
     end
-
+    @most_popular = @articles.most_popular
     @articles = @articles.includes(:user).order(id: :desc)
     @articles = @articles.where("? = any(tags)", params[:q]) if params[:q].present?
   end

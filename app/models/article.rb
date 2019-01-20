@@ -7,6 +7,7 @@ class Article < ApplicationRecord
   belongs_to :user
 
   scope :published, -> {where(published: true)}
+  scope :most_popular, -> {order(comments_count: :desc).first}
 
   def tags=(value)
     value = sanitize_tags(value) if value.is_a?(String)
