@@ -12,6 +12,10 @@
   <%= @article.text %>
   </p>
   <p>
+    <%= image_tag(@article.image_url, alt: 'Image') if @article.image? %>
+  </p>
+
+  <p>
     <% if sponsored_article? @article %>
       <h3> Artykuł sponsorowany przez firmę <%= @article.company.name %></h3>
     <% end %>
