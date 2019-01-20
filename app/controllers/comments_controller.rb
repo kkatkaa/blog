@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.article = @article
     @like = Like.find_or_initialize_by(article: @article, user: current_user)
-    
+
     @comment.user = current_user
     if @comment.save
       # session[:commenter] = @comment.commenter
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   private
 
   def find_article
-    @article = Article.find(params[:article_id])
+    @article = Article.published.find(params[:article_id])
   end
 
   def comment_params
