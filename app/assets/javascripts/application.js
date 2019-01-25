@@ -20,7 +20,12 @@
 
 $(document).ready(function(){
   $('#show-comments-button').click(function(){
-  $('#show-comments-button').text("Hide");
+    if ($('#show-comments-button').text()=="Hide") {
+      $('#show-comments-button').text("Show")
+      }
+    else {
+      $('#show-comments-button').text("Hide")
+      }
   $('#users-comments').toggle();
   });
 });
