@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_many :comments
   has_many :likes
   has_many :liked_articles, through: :likes, source: :article
+  has_many :comments_raitings
+
+  def rated_for?(comment)
+    comments_raitings.where(comment: comment).first
+  end
 
   def admin?
     admin
