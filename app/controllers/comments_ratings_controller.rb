@@ -1,6 +1,6 @@
 class CommentsRatingsController < ApplicationController
   def create
-    raiting = CommentsRaiting.new(comment_id: params[:comment_id], user: current_user)
+    raiting = CommentsRaiting.new(comment_id: params[:comment_id], raiting: params[:raiting], user: current_user)
     raiting.save
     redirect_to article_path(raiting.comment.article)
   end
