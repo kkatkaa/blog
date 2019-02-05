@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @like = Like.find_or_initialize_by(article: @article, user: current_user)
+  
 
     respond_to do |format|
       format.html do

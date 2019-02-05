@@ -13,3 +13,19 @@
   <%= link_to 'Edit', edit_article_comment_path(article_id: comment.article.id, id: comment.id) %>
 
 <hr />
+
+  <%= pluralize(comment.comments_raitings.count, 'person') %> scores this comment</br>
+    <% if comment.comments_raitings.sum(:raiting) > -5 %>
+      <%= comment.comments_raitings.sum(:raiting) %>
+    <% end %>
+
+  Like this comment:</br>
+
+    <% if current_user.rated_for?(comment).present?  %>
+      You've already rated this comment
+      <%= link_to "change your rate", article_comment_comments_rating_path(article_id: comment.article.id, comment_id: comment.id, id: current_user.rated_for?(comment), params: {raiting: 1}), method: :delete %>
+    <% else %>
+      <%= link_to '+', article_comment_comments_ratings_path(article_id: comment.article.id, comment_id: comment.id, params: {raiting: 1}), method: :post %>
+      Don't like?
+      <%= link_to '-', article_comment_comments_ratings_path(article_id: comment.article.id, comment_id: comment.id, params: {raiting: -1}), method: :post %>
+    <% end %></br>
